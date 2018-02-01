@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Фрагменти</string>
+    <string name="first_activity_name">Прва активност</string>
+    <string name="second_activity_name">Друга активност</string>
+    <string name="button_buy">Купиy</string>
+
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Fragments</string>
+    <string name="first_activity_name">First Activity</string>
+    <string name="second_activity_name">Second Activity</string>
+    <string name="button_buy">Buy</string>
+
+</resources>
