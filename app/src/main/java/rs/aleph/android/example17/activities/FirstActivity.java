@@ -3,6 +3,12 @@ package rs.aleph.android.example17.activities;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.widget.Toast;
 
 import rs.aleph.android.example17.R;
@@ -10,7 +16,7 @@ import rs.aleph.android.example17.fragments.DetailFragment;
 import rs.aleph.android.example17.fragments.MasterFragment;
 
 // Each activity extends Activity class
-public class FirstActivity extends Activity implements MasterFragment.OnItemSelectedListener {
+public class FirstActivity extends AppCompatActivity implements MasterFragment.OnItemSelectedListener {
 
 	boolean landscape = false;
 
@@ -21,10 +27,13 @@ public class FirstActivity extends Activity implements MasterFragment.OnItemSele
 		// Each lifecycle method should call the method it overrides
 		super.onCreate(savedInstanceState);
 
-		// Shows a toast message (a pop-up message)
-		Toast.makeText(getBaseContext(), "FirstActivity.onCreate()", Toast.LENGTH_SHORT).show();
 
-		// Draws layout
+
+
+
+		// Shows a toast message (a pop-up message)
+
+				// Draws layout
 		setContentView(R.layout.activity_first);
 
 		// If the activity is started for the first time create master fragment
@@ -50,6 +59,11 @@ public class FirstActivity extends Activity implements MasterFragment.OnItemSele
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 				ft.commit();
 			}
+
+			Toolbar toolbar = (Toolbar)findViewById(R.id.my_toolbar);
+			setSupportActionBar(toolbar);
+
+
 		}
 	}
 
@@ -61,7 +75,9 @@ public class FirstActivity extends Activity implements MasterFragment.OnItemSele
 		super.onStart();
 
 		// Shows a toast message (a pop-up message)
-		Toast.makeText(getBaseContext(), "FirstActivity.onStart()", Toast.LENGTH_SHORT).show();
+		Snackbar.make(findViewById(R.id.master_view),"Hello", Snackbar.LENGTH_LONG).show();
+		// Draws layout
+
 	}
 
 	// onRestart method is a lifecycle method called after onStop when the current activity is
@@ -132,10 +148,18 @@ public class FirstActivity extends Activity implements MasterFragment.OnItemSele
 			DetailFragment detailFragment = new DetailFragment();
 			detailFragment.setContent(position);
 			FragmentTransaction ft = getFragmentManager().beginTransaction();
-			ft.replace(R.id.master_view, detailFragment, "Detail_Fragment_2");
+			ft.replace(R.id.list_item, detailFragment, "Detail_Fragment_2");
 			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 			ft.addToBackStack(null);
 			ft.commit();
 		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+
+		getMenuInflater().inflate(R.menu.menu, menu);
+		return true;
 	}
 }
